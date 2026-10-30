@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   PERSONAL_INFO,
   NAV_SECTIONS,
   NavSectionItem,
 } from "@/data/portfolioData";
+import { CvPreviewModal } from "@/components/ui/CvPreviewModal";
 
 interface ProfileSidebarProps {
   theme: "dark" | "light";
@@ -14,6 +15,7 @@ interface ProfileSidebarProps {
   onSelectSection: (id: NavSectionItem["id"]) => void;
   onScrollToContact: () => void;
   onThemeChange?: (theme: "dark" | "light") => void;
+  onOpenCvPreview?: () => void;
   className?: string;
 }
 
@@ -23,10 +25,12 @@ export default function ProfileSidebar({
   onSelectSection,
   onScrollToContact,
   onThemeChange,
+  onOpenCvPreview,
   className,
 }: ProfileSidebarProps) {
   const isDark = theme === "dark";
   const router = useRouter();
+  const [showInternalCvModal, setShowInternalCvModal] = useState(false);
 
   const handleSelectTheme = (newTheme: "dark" | "light") => {
     if (onThemeChange) {
@@ -282,10 +286,16 @@ export default function ProfileSidebar({
             </p>
           </div>
 
-          <a
-            href={PERSONAL_INFO.cvUrl}
-            download={PERSONAL_INFO.cvFileName}
-            className={`w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg font-mono text-xs font-semibold border transition-all ${
+          <button
+            type="button"
+            onClick={() => {
+              if (onOpenCvPreview) {
+                onOpenCvPreview();
+              } else {
+                setShowInternalCvModal(true);
+              }
+            }}
+            className={`w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg font-mono text-xs font-semibold border transition-all cursor-pointer ${
               isDark
                 ? "bg-slate-800/80 border-slate-700 text-cyan-300 hover:bg-slate-800 hover:border-cyan-500/50"
                 : "bg-slate-50 border-slate-200 text-slate-800 hover:bg-slate-100 hover:border-slate-300"
@@ -298,16 +308,31 @@ export default function ProfileSidebar({
               viewBox="0 0 24 24"
             >
               <path
-                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
               />
             </svg>
-            <span>Download CV (.pdf)</span>
-          </a>
+            <span>Preview CV (.pdf)</span>
+          </button>
         </div>
       </div>
+
+      {/* Internal Modal Fallback if not controlled by parent */}
+      {!onOpenCvPreview && (
+        <CvPreviewModal
+          isOpen={showInternalCvModal}
+          onClose={() => setShowInternalCvModal(false)}
+          theme={theme}
+        />
+      )}
     </aside>
   );
 }

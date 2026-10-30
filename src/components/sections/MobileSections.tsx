@@ -20,8 +20,8 @@ export function MobileOverviewSection({
   downloadDone,
 }: {
   onDownloadCv: (e: React.MouseEvent) => void;
-  downloading: boolean;
-  downloadDone: boolean;
+  downloading?: boolean;
+  downloadDone?: boolean;
 }) {
   return (
     <div className="space-y-6">
@@ -64,11 +64,11 @@ export function MobileOverviewSection({
             Chat on WhatsApp ({PERSONAL_INFO.whatsapp})
           </a>
           <button
-            className="flex items-center justify-center gap-space-xs h-12 w-full rounded-lg bg-surface-container-high text-on-surface font-body-md text-body-md font-medium hover:bg-surface-bright active:translate-y-0.5 transition-colors"
+            className="flex items-center justify-center gap-space-xs h-12 w-full rounded-lg bg-surface-container-high text-on-surface font-body-md text-body-md font-medium hover:bg-surface-bright active:translate-y-0.5 transition-colors cursor-pointer"
             onClick={onDownloadCv}
           >
-            <span className="material-symbols-outlined text-[20px] text-primary">download</span>
-            {downloading ? "Downloading..." : downloadDone ? "CV Downloaded!" : "Download Verified CV (.pdf)"}
+            <span className="material-symbols-outlined text-[20px] text-primary">visibility</span>
+            <span>Preview CV (.pdf)</span>
           </button>
         </div>
       </section>
@@ -472,10 +472,10 @@ export function MobileContactSection({
 
         <button
           onClick={onDownloadCv}
-          className="w-full flex items-center justify-center gap-2 p-3 rounded-lg border border-primary text-primary hover:bg-primary/10 transition-colors text-xs font-semibold"
+          className="w-full flex items-center justify-center gap-2 p-3 rounded-lg border border-primary text-primary hover:bg-primary/10 transition-colors text-xs font-semibold cursor-pointer"
         >
-          <span className="material-symbols-outlined text-[18px]">download</span>
-          <span>Download CV PDF</span>
+          <span className="material-symbols-outlined text-[18px]">visibility</span>
+          <span>Preview CV (.pdf)</span>
         </button>
       </div>
     </section>

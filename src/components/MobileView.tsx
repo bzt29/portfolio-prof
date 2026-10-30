@@ -11,6 +11,7 @@ import {
   MobileJourneySection,
   MobileContactSection,
 } from "@/components/sections";
+import { CvPreviewModal } from "@/components/ui/CvPreviewModal";
 
 export type MobileSectionId =
   | "overview"
@@ -41,23 +42,11 @@ const SECTIONS: SectionItem[] = [
 
 export default function MobileView() {
   const [activeSection, setActiveSection] = useState<MobileSectionId>("overview");
-  const [downloading, setDownloading] = useState(false);
-  const [downloadDone, setDownloadDone] = useState(false);
+  const [isCvOpen, setIsCvOpen] = useState(false);
 
   const handleDownloadCv = (e: React.MouseEvent) => {
     e.preventDefault();
-    setDownloading(true);
-    const link = document.createElement("a");
-    link.href = PERSONAL_INFO.cvUrl;
-    link.download = PERSONAL_INFO.cvFileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setTimeout(() => {
-      setDownloading(false);
-      setDownloadDone(true);
-      setTimeout(() => setDownloadDone(false), 2500);
-    }, 800);
+    setIsCvOpen(true);
   };
 
   const currentIndex = SECTIONS.findIndex((s) => s.id === activeSection);
@@ -132,8 +121,6 @@ export default function MobileView() {
             {activeSection === "overview" && (
               <MobileOverviewSection
                 onDownloadCv={handleDownloadCv}
-                downloading={downloading}
-                downloadDone={downloadDone}
               />
             )}
             {activeSection === "disciplines" && <MobileDisciplinesSection />}
@@ -201,6 +188,13 @@ export default function MobileView() {
           })}
         </div>
       </nav>
+
+      {/* Curriculum Vitae Preview Modal */}
+      <CvPreviewModal
+        isOpen={isCvOpen}
+        onClose={() => setIsCvOpen(false)}
+        theme="dark"
+      />
     </div>
   );
 }
