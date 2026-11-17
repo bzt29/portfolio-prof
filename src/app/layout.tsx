@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   description: SITE_METADATA.description,
   authors: [{ name: PERSONAL_INFO.name, url: APP_CONFIG.baseUrl }],
   creator: PERSONAL_INFO.name,
+  icons: {
+    icon: [{ url: "/favicon-192.png", type: "image/png", sizes: "192x192" }],
+  },
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
   openGraph: {

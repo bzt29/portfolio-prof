@@ -22,6 +22,11 @@ Open Graph, dan data terstruktur. Perubahan environment memerlukan redeploy.
   crawler publik termasuk OAI-SearchBot; API dan login dikecualikan. Login juga
   memakai `noindex` (robots.txt bukan pengamanan akses).
 - `/opengraph-image` menghasilkan gambar preview link berukuran 1200 × 630.
+- Favicon pencarian memakai `/favicon-192.png` (192 × 192) dengan URL tetap.
+  Sumber vektor berada di `public/icon.svg`; `/favicon.ico` tetap tersedia.
+  Setelah mengganti ikon, minta indexing ulang homepage di Search Console.
+  Tampilan ikon di hasil pencarian menunggu Google melakukan crawl dan pemrosesan
+  ulang, yang dapat memerlukan beberapa hari hingga beberapa minggu.
 
 Setelah deployment:
 
