@@ -1,0 +1,73 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { PERSONAL_INFO } from "@/data/portfolioData";
+
+export const metadata: Metadata = {
+  title: `CV | ${PERSONAL_INFO.name}`,
+  description: `Preview dan unduh CV ${PERSONAL_INFO.name}, ${PERSONAL_INFO.fullRole}.`,
+};
+
+export default function CvPage() {
+  return (
+    <main className="flex min-h-dvh flex-col bg-[#090d16] text-slate-100">
+      <header className="flex items-center justify-between gap-3 border-b border-white/10 bg-[#10151f] px-3 py-3 sm:gap-6 sm:px-6">
+        <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+          <Link
+            href="/"
+            aria-label="Kembali ke portfolio"
+            title="Kembali ke portfolio"
+            className="flex size-9 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-300"
+          >
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m12 19-7-7 7-7M5 12h14" />
+            </svg>
+          </Link>
+          <div className="min-w-0 border-l border-white/10 pl-3 sm:pl-4">
+            <h1 className="text-sm font-medium tracking-tight">Curriculum Vitae</h1>
+            <p className="mt-0.5 truncate text-xs text-slate-400">{PERSONAL_INFO.name}</p>
+          </div>
+        </div>
+        <nav aria-label="Aksi CV" className="flex shrink-0 items-center gap-2 sm:gap-4">
+          <a
+            href={PERSONAL_INFO.cvUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden rounded-md px-2 py-2 text-xs text-slate-400 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-300 sm:inline-flex"
+          >
+            Buka PDF ↗
+          </a>
+          <a
+            href={PERSONAL_INFO.cvUrl}
+            download={PERSONAL_INFO.cvFileName}
+            className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-xs font-medium text-slate-900 transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-300 sm:px-4"
+          >
+            <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4" />
+            </svg>
+            Unduh CV
+          </a>
+        </nav>
+      </header>
+
+      <section aria-label="Preview CV" className="flex flex-1 flex-col">
+        <iframe
+          src={`${PERSONAL_INFO.cvUrl}#toolbar=1&navpanes=0`}
+          title={`CV ${PERSONAL_INFO.name}`}
+          className="min-h-[65dvh] w-full flex-1 border-0 bg-slate-900"
+        />
+        <p className="border-t border-slate-800 px-4 py-3 text-center text-xs leading-relaxed text-slate-400">
+          Preview tidak tampil?{" "}
+          <a
+            href={PERSONAL_INFO.cvUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-cyan-300 underline underline-offset-4"
+          >
+            Buka PDF di tab baru
+          </a>{" "}
+          atau gunakan tombol Unduh CV.
+        </p>
+      </section>
+    </main>
+  );
+}

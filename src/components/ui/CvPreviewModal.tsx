@@ -40,7 +40,7 @@ export function CvPreviewModal({
   if (!isOpen) return null;
 
   const handleCopyLink = async () => {
-    const fullUrl = window.location.origin + PERSONAL_INFO.cvUrl;
+    const fullUrl = new URL("/cv", window.location.origin).href;
     try {
       await navigator.clipboard.writeText(fullUrl);
       setCopied(true);
