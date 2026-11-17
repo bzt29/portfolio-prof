@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { PERSONAL_INFO } from "@/data/portfolioData";
+import { APP_CONFIG, SITE_METADATA } from "@/lib/constants";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -13,9 +15,28 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "S. M. Hafiz F. Syed | Web & Mobile Developer",
-  description:
-    "Portfolio of S. M. Hafiz F. Syed. Web & Mobile App Developer based in Tasikmalaya, Indonesia. Specializing in Laravel, React, Next.js, Kotlin, and Flutter.",
+  metadataBase: new URL(APP_CONFIG.baseUrl),
+  title: SITE_METADATA.title,
+  description: SITE_METADATA.description,
+  authors: [{ name: PERSONAL_INFO.name, url: APP_CONFIG.baseUrl }],
+  creator: PERSONAL_INFO.name,
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    siteName: `${PERSONAL_INFO.name} — Portfolio`,
+    title: SITE_METADATA.title,
+    description: SITE_METADATA.description,
+    url: "/",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: SITE_METADATA.title }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_METADATA.title,
+    description: SITE_METADATA.description,
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function RootLayout({
@@ -24,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}>
+    <html lang="id" className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

@@ -1,10 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PERSONAL_INFO } from "@/data/portfolioData";
+import { SITE_METADATA } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: `CV | ${PERSONAL_INFO.name}`,
   description: `Preview dan unduh CV ${PERSONAL_INFO.name}, ${PERSONAL_INFO.fullRole}.`,
+  alternates: { canonical: "/cv" },
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    siteName: `${PERSONAL_INFO.name} — Portfolio`,
+    url: "/cv",
+    title: `CV | ${PERSONAL_INFO.name}`,
+    description: `Preview dan unduh CV ${PERSONAL_INFO.name}, ${PERSONAL_INFO.fullRole}.`,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: SITE_METADATA.title }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `CV | ${PERSONAL_INFO.name}`,
+    description: `Preview dan unduh CV ${PERSONAL_INFO.name}, ${PERSONAL_INFO.fullRole}.`,
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function CvPage() {

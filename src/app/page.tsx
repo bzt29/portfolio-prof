@@ -1,65 +1,51 @@
-"use client";
+import PortfolioHome from "@/components/PortfolioHome";
+import { PERSONAL_INFO } from "@/data/portfolioData";
+import { APP_CONFIG, SITE_METADATA } from "@/lib/constants";
 
-import React, { useState, useSyncExternalStore } from "react";
-import WhiteView from "@/components/WhiteView";
-import DarkView from "@/components/DarkView";
-import type { NavSectionItem } from "@/data/portfolioData";
-
-function subscribeTheme(callback: () => void) {
-  window.addEventListener("theme_change", callback);
-  window.addEventListener("storage", callback);
-  return () => {
-    window.removeEventListener("theme_change", callback);
-    window.removeEventListener("storage", callback);
-  };
-}
-
-function getThemeSnapshot(): "dark" | "light" {
-  if (typeof window === "undefined") return "dark";
-  const saved = localStorage.getItem("portfolio_theme");
-  return saved === "light" ? "light" : "dark";
-}
-
-function getThemeServerSnapshot(): "dark" | "light" {
-  return "dark";
-}
+const profile = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${APP_CONFIG.baseUrl}/#website`,
+      url: `${APP_CONFIG.baseUrl}/`,
+      name: `${PERSONAL_INFO.name} — Portfolio`,
+      inLanguage: "id",
+      publisher: { "@id": `${APP_CONFIG.baseUrl}/#person` },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${APP_CONFIG.baseUrl}/#profile`,
+      url: `${APP_CONFIG.baseUrl}/`,
+      name: SITE_METADATA.title,
+      description: SITE_METADATA.description,
+      inLanguage: "id",
+      isPartOf: { "@id": `${APP_CONFIG.baseUrl}/#website` },
+      mainEntity: { "@id": `${APP_CONFIG.baseUrl}/#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${APP_CONFIG.baseUrl}/#person`,
+      name: PERSONAL_INFO.name,
+      url: `${APP_CONFIG.baseUrl}/`,
+      image: new URL(PERSONAL_INFO.avatarUrl, APP_CONFIG.baseUrl).href,
+      jobTitle: PERSONAL_INFO.fullRole,
+      description: PERSONAL_INFO.detailedIntro,
+      homeLocation: { "@type": "Place", name: PERSONAL_INFO.location },
+      sameAs: [PERSONAL_INFO.github, PERSONAL_INFO.linkedin],
+      subjectOf: { "@type": "WebPage", url: `${APP_CONFIG.baseUrl}/cv`, name: `CV ${PERSONAL_INFO.name}` },
+    },
+  ],
+};
 
 export default function HomePage() {
-  const theme = useSyncExternalStore(
-    subscribeTheme,
-    getThemeSnapshot,
-    getThemeServerSnapshot
-  );
-  const [activeSection, setActiveSection] = useState<NavSectionItem["id"]>("hero");
-
-  const handleThemeChange = (newTheme: "dark" | "light") => {
-    localStorage.setItem("portfolio_theme", newTheme);
-    window.dispatchEvent(new Event("theme_change"));
-  };
-
   return (
-    <div
-      className={`min-h-screen flex flex-col w-full transition-colors duration-200 ${
-        theme === "dark"
-          ? "bg-[#090d16] text-slate-300"
-          : "bg-[#f8fafc] text-slate-800"
-      }`}
-    >
-      <main className="flex-1 flex flex-col w-full">
-        {theme === "dark" ? (
-          <DarkView
-            onThemeChange={handleThemeChange}
-            activeSection={activeSection}
-            onSelectSection={setActiveSection}
-          />
-        ) : (
-          <WhiteView
-            onThemeChange={handleThemeChange}
-            activeSection={activeSection}
-            onSelectSection={setActiveSection}
-          />
-        )}
-      </main>
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profile).replace(/</g, "\\u003c") }}
+      />
+      <PortfolioHome />
+    </>
   );
 }

@@ -2,7 +2,8 @@ import WhiteView from "@/components/WhiteView";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Light Theme | S. M. Hafiz F. Syed",
+  title: "Syed M Hafiz Firdaus | Software & Network Engineer",
+  alternates: { canonical: "/" },
   description: "Web & Mobile Developer Portfolio | White Theme",
 };
 

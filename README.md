@@ -8,6 +8,44 @@
 
 Platform portofolio web modern, interaktif, dan berarsitektur responsif tinggi yang menampilkan karya rekayasa perangkat lunak dan infrastruktur jaringan oleh **Syed M Hafiz Firdaus** (Software Engineer & Network Engineer spesialis Web Full-Stack dan Mobile Apps).
 
+## SEO dan penemuan oleh AI
+
+Domain utama: **https://syed.my.id**. Atur `NEXT_PUBLIC_SITE_URL=https://syed.my.id`
+di environment deployment sebelum build. Nilai ini dipakai untuk canonical, sitemap,
+Open Graph, dan data terstruktur. Perubahan environment memerlukan redeploy.
+
+- `/` menyajikan nama lengkap, ringkasan profil, tautan CV, serta JSON-LD
+  `ProfilePage`, `Person`, dan `WebSite` dalam HTML awal.
+- `/cv` mempunyai canonical sendiri. `/dark`, `/white`, dan `/mobile` memakai
+  canonical `/` karena merupakan tampilan alternatif dari portfolio yang sama.
+- `/sitemap.xml` hanya memuat halaman utama dan CV. `/robots.txt` mengizinkan
+  crawler publik termasuk OAI-SearchBot; API dan login dikecualikan. Login juga
+  memakai `noindex` (robots.txt bukan pengamanan akses).
+- `/opengraph-image` menghasilkan gambar preview link berukuran 1200 × 630.
+
+Setelah deployment:
+
+1. Verifikasi kepemilikan `syed.my.id` di [Google Search Console](https://search.google.com/search-console)
+   menggunakan TXT DNS yang diberikan Google. Jangan menggunakan kode contoh.
+2. Kirim `https://syed.my.id/sitemap.xml`, lalu gunakan URL Inspection dan
+   Request Indexing untuk homepage serta `/cv`.
+3. Verifikasi/import situs ke [Bing Webmaster Tools](https://www.bing.com/webmasters)
+   dan kirim sitemap yang sama.
+4. Pastikan proteksi bot/CDN tidak menolak crawler pencarian. Perbarui tautan
+   website di GitHub, LinkedIn, dan PDF CV menjadi `https://syed.my.id`.
+5. Periksa canonical pada halaman produksi agar tidak menunjuk domain Vercel lama.
+   Pantau query nama lengkap dan status indexing di Search Console.
+
+Metadata dan akses crawler membantu penemuan; keduanya tidak menjamin peringkat,
+indexing, atau penyebutan oleh chatbot. AI yang tidak memakai pencarian web tidak
+otomatis mengetahui perubahan situs. File AI khusus bukan syarat untuk Google AI
+Search; data terstruktur harus sesuai informasi yang terlihat oleh pengunjung.
+
+Referensi: [Google AI Search](https://developers.google.com/search/docs/appearance/ai-features),
+[OpenAI crawlers](https://developers.openai.com/api/docs/bots),
+[Google recrawl](https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl),
+[Bing sitemap](https://www.bing.com/webmasters/help/Sitemaps-3b5cf6ed).
+
 ---
 
 ## 🌟 Fitur Utama (Key Features)

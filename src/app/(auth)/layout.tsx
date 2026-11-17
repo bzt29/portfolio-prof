@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Admin Portal | S. M. Hafiz F. Syed",
+  title: "Admin Portal | Syed M Hafiz Firdaus",
+  robots: { index: false, follow: false },
   description: "Secure administrative login demo utilizing Next.js Route Groups.",
 };
 

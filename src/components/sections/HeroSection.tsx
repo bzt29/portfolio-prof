@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { PERSONAL_INFO, METRICS } from "@/data/portfolioData";
 
 interface HeroSectionProps {
@@ -19,8 +20,12 @@ export default function HeroSection({ theme }: HeroSectionProps) {
             isDark ? "text-white" : "text-slate-900"
           }`}
         >
-          {PERSONAL_INFO.briefIntro}
+          {PERSONAL_INFO.name}
         </h1>
+
+        <p className={`text-lg font-medium ${isDark ? "text-cyan-300" : "text-brand-600"}`}>
+          {PERSONAL_INFO.fullRole}
+        </p>
 
         <p
           className={`text-sm sm:text-base leading-relaxed whitespace-pre-line ${
@@ -29,6 +34,13 @@ export default function HeroSection({ theme }: HeroSectionProps) {
         >
           {PERSONAL_INFO.detailedIntro}
         </p>
+
+        <Link
+          href="/cv"
+          className={`inline-flex items-center gap-2 text-sm font-medium underline underline-offset-4 ${isDark ? "text-cyan-300 hover:text-cyan-200" : "text-brand-600 hover:text-brand-700"}`}
+        >
+          Lihat CV {PERSONAL_INFO.name} <span aria-hidden="true">↗</span>
+        </Link>
       </div>
 
       {/* Real Core Capabilities & Practical Experience */}

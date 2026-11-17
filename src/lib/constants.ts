@@ -1,18 +1,22 @@
+import { PERSONAL_INFO } from "@/data/portfolioData";
+
 export const APP_CONFIG = {
-  name: "Portfolio - S. M. Hafiz F. Syed",
+  name: `Portfolio - ${PERSONAL_INFO.name}`,
   shortName: "Hafiz",
   version: "v2.0.0",
   environment: process.env.NODE_ENV || "development",
-  baseUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  baseUrl: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://syed.my.id"
+  ).origin,
 } as const;
 
 export const SITE_METADATA = {
-  title: "S. M. Hafiz F. Syed | Web & Mobile Developer",
+  title: `${PERSONAL_INFO.name} | Software & Network Engineer`,
   description:
-    "Portfolio of S. M. Hafiz F. Syed. Web & Mobile App Developer based in Tasikmalaya, Indonesia. Specializing in Laravel, React, Next.js, Kotlin, and Flutter.",
+    `Portofolio ${PERSONAL_INFO.name}, Software Engineer dan Network Engineer di Majalengka. Proyek web, mobile, infrastruktur jaringan, pengalaman, dan CV.`,
   keywords: [
     "Hafiz",
-    "S. M. Hafiz F. Syed",
+    PERSONAL_INFO.name,
     "Web Developer",
     "Mobile Apps",
     "Laravel",
@@ -21,5 +25,6 @@ export const SITE_METADATA = {
     "Kotlin",
     "Flutter",
     "Tasikmalaya",
+    "Majalengka",
   ],
 } as const;

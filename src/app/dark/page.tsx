@@ -2,7 +2,8 @@ import DarkView from "@/components/DarkView";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Dark Theme | S. M. Hafiz F. Syed",
+  title: "Syed M Hafiz Firdaus | Software & Network Engineer",
+  alternates: { canonical: "/" },
   description: "Web & Mobile Developer Portfolio | Dark Theme",
 };
 
