@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
+import { CvPreview } from "./CvPreview";
 
 export interface CvPreviewModalProps {
   isOpen: boolean;
@@ -243,13 +244,9 @@ export function CvPreviewModal({
           </div>
         </div>
 
-        {/* Modal Body: Embedded PDF Viewer with Fallback */}
-        <div className="flex-1 w-full relative bg-slate-900/60 overflow-hidden flex flex-col">
-          <iframe
-            src={`${PERSONAL_INFO.cvUrl}#toolbar=1&navpanes=0`}
-            title="CV ATS Syed M Hafiz Firdaus"
-            className="w-full h-full flex-1 border-0 bg-slate-950/40"
-          />
+        {/* Render PDF pages directly, including on mobile browsers. */}
+        <div className="min-h-0 flex-1 w-full relative bg-slate-900/60 overflow-hidden flex flex-col">
+          <CvPreview />
 
           {/* Polite Fallback Info Strip at bottom if browser has iframe PDF restrictions */}
           <div
@@ -260,7 +257,7 @@ export function CvPreviewModal({
             }`}
           >
             <span className="truncate">
-              Tips: Gunakan tombol zoom bawaan PDF viewer di atas untuk memperbesar.
+              Gulir untuk membaca CV. Gunakan tombol + untuk memperbesar.
             </span>
             <div className="flex items-center gap-2 shrink-0">
               <a

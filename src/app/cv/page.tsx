@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 import { SITE_METADATA } from "@/lib/constants";
+import { CvPreview } from "@/components/ui/CvPreview";
 
 export const metadata: Metadata = {
   title: `CV | ${PERSONAL_INFO.name}`,
@@ -25,8 +26,8 @@ export const metadata: Metadata = {
 
 export default function CvPage() {
   return (
-    <main className="flex min-h-dvh flex-col bg-[#090d16] text-slate-100">
-      <header className="flex items-center justify-between gap-3 border-b border-white/10 bg-[#10151f] px-3 py-3 sm:gap-6 sm:px-6">
+    <main className="flex h-dvh flex-col overflow-hidden bg-[#090d16] text-slate-100">
+      <header className="flex shrink-0 items-center justify-between gap-3 border-b border-white/10 bg-[#10151f] px-3 py-3 sm:gap-6 sm:px-6">
         <div className="min-w-0">
           <h1 className="text-sm font-medium tracking-tight">Curriculum Vitae</h1>
           <p className="mt-0.5 truncate text-xs text-slate-400">{PERSONAL_INFO.name}</p>
@@ -53,24 +54,8 @@ export default function CvPage() {
         </nav>
       </header>
 
-      <section aria-label="Preview CV" className="flex flex-1 flex-col">
-        <iframe
-          src={`${PERSONAL_INFO.cvUrl}#toolbar=1&navpanes=0`}
-          title={`CV ${PERSONAL_INFO.name}`}
-          className="min-h-[65dvh] w-full flex-1 border-0 bg-slate-900"
-        />
-        <p className="border-t border-slate-800 px-4 py-3 text-center text-xs leading-relaxed text-slate-400">
-          Preview tidak tampil?{" "}
-          <a
-            href={PERSONAL_INFO.cvUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-cyan-300 underline underline-offset-4"
-          >
-            Buka PDF di tab baru
-          </a>{" "}
-          atau gunakan tombol Unduh CV.
-        </p>
+      <section aria-label="Preview CV" className="flex min-h-0 flex-1 flex-col">
+        <CvPreview />
       </section>
     </main>
   );
