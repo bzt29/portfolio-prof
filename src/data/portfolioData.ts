@@ -104,6 +104,10 @@ export const PERSONAL_INFO = {
   avatarUrl: "/assets/image.png",
   cvUrl: "/assets/cv_ats_syed.pdf",
   cvFileName: "CV ATS SYED.pdf",
+  cvPages: [
+    "/assets/cv-page-1.webp",
+    "/assets/cv-page-2.webp",
+  ],
   statusBadge: "Available for Roles & Freelance",
   systemStatus: "Available for Work",
   versionTag: "Portfolio v2.0",

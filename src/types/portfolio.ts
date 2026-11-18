@@ -112,6 +112,7 @@ export interface PersonalInfo {
   avatarUrl: string;
   cvUrl: string;
   cvFileName: string;
+  cvPages?: string[];
   statusBadge: string;
   systemStatus: string;
   versionTag: string;
