@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 import { SITE_METADATA } from "@/lib/constants";
 
@@ -28,21 +27,9 @@ export default function CvPage() {
   return (
     <main className="flex min-h-dvh flex-col bg-[#090d16] text-slate-100">
       <header className="flex items-center justify-between gap-3 border-b border-white/10 bg-[#10151f] px-3 py-3 sm:gap-6 sm:px-6">
-        <div className="flex min-w-0 items-center gap-3 sm:gap-4">
-          <Link
-            href="/"
-            aria-label="Kembali ke portfolio"
-            title="Kembali ke portfolio"
-            className="flex size-9 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-300"
-          >
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m12 19-7-7 7-7M5 12h14" />
-            </svg>
-          </Link>
-          <div className="min-w-0 border-l border-white/10 pl-3 sm:pl-4">
-            <h1 className="text-sm font-medium tracking-tight">Curriculum Vitae</h1>
-            <p className="mt-0.5 truncate text-xs text-slate-400">{PERSONAL_INFO.name}</p>
-          </div>
+        <div className="min-w-0">
+          <h1 className="text-sm font-medium tracking-tight">Curriculum Vitae</h1>
+          <p className="mt-0.5 truncate text-xs text-slate-400">{PERSONAL_INFO.name}</p>
         </div>
         <nav aria-label="Aksi CV" className="flex shrink-0 items-center gap-2 sm:gap-4">
           <a
