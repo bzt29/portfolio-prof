@@ -73,7 +73,7 @@ export default function MobileView() {
               <span className="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_rgba(78,222,163,0.6)] animate-pulse"></span>
               <span className="font-label-sm text-label-sm text-tertiary font-mono">AVAILABLE</span>
             </div>
-            <div className="w-8 h-8 rounded-full overflow-hidden border border-primary/40 shadow-md">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/40 shadow-md shrink-0">
               <img
                 src={PERSONAL_INFO.avatarUrl}
                 alt={PERSONAL_INFO.shortName}

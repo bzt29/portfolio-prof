@@ -58,39 +58,39 @@ export default function WhiteView({
   return (
     <div className="bg-[#f8fafc] text-slate-800 antialiased flex flex-col min-h-screen selection:bg-brand-100 selection:text-brand-700 w-full">
       {/* Mobile Sticky Top Header (< 768px) */}
-      <header className="md:hidden sticky top-0 z-40 w-full border-b backdrop-blur-md px-3.5 py-2.5 flex items-center justify-between transition-colors bg-[#f8fafc]/95 border-slate-200 text-slate-800">
-        <div className="flex items-center gap-2.5 min-w-0">
-          <div className="w-8 h-8 rounded-full overflow-hidden border border-slate-300 flex-shrink-0">
+      <header className="md:hidden sticky top-0 z-40 w-full border-b backdrop-blur-md px-4 py-3 flex items-center justify-between transition-colors bg-[#f8fafc]/95 border-slate-200 text-slate-800">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-300 shadow-sm shrink-0">
             <img
               src={PERSONAL_INFO.avatarUrl}
               alt={PERSONAL_INFO.name}
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-cover object-center"
             />
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5">
-              <span className="font-bold text-xs truncate">
+              <span className="font-bold text-sm text-slate-900 tracking-tight truncate">
                 {PERSONAL_INFO.shortName}
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></span>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 shadow-[0_0_6px_rgba(16,185,129,0.8)]"></span>
             </div>
-            <p className="text-[10px] font-mono text-slate-500 truncate">
+            <p className="text-xs font-mono text-slate-500 truncate mt-0.5">
               {PERSONAL_INFO.roleSubtitle}
             </p>
           </div>
         </div>
 
         {/* Right: Theme Toggle */}
-        <div className="flex items-center flex-shrink-0">
+        <div className="flex items-center shrink-0">
           <button
             type="button"
             onClick={() => onThemeChange?.("dark")}
             aria-label="Switch to Dark mode"
             title="Switch to Dark View"
-            className="w-8 h-8 rounded-lg flex items-center justify-center border text-xs bg-white border-slate-200 text-slate-700 hover:text-slate-900 transition-colors shadow-sm"
+            className="w-9 h-9 rounded-xl flex items-center justify-center border text-xs bg-white border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors shadow-sm cursor-pointer"
           >
             <svg
-              className="w-4 h-4"
+              className="w-4.5 h-4.5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
